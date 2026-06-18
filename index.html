@@ -189,6 +189,87 @@
     .pill.coral  { background: #FAECE7; color: #712B13; border-color: #F0997B; }
     .pill.amber  { background: #FAEEDA; color: #633806; border-color: #EF9F27; }
 
+    /* ── Case card ── */
+    .case-card {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 2rem;
+      background: var(--bg);
+      border: 0.5px solid var(--border);
+      border-left: 3px solid var(--navy);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+    }
+
+    .case-meta { font-size: 12px; color: var(--text-3); margin-bottom: 6px; }
+    .case-company { font-weight: 500; color: var(--navy); }
+    .case-dot { margin: 0 6px; }
+    .case-role { color: var(--text-3); }
+
+    .case-title { font-size: 18px; font-weight: 500; color: var(--text); margin-bottom: 8px; }
+    .case-desc { font-size: 13px; color: var(--text-2); line-height: 1.6; margin-bottom: 1.25rem; }
+
+    .case-ia-label {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--navy); margin-bottom: 8px;
+    }
+    .case-ia-list { list-style: none; margin-bottom: 1.5rem; }
+    .case-ia-list li {
+      font-size: 13px; color: var(--text-2); padding: 3px 0;
+      display: flex; gap: 8px; align-items: flex-start; line-height: 1.5;
+    }
+    .case-ia-list li::before { content: "—"; color: var(--navy-3); flex-shrink: 0; }
+
+    .case-metrics { display: flex; gap: 1.5rem; }
+    .case-metric { display: flex; flex-direction: column; }
+    .metric-value { font-size: 22px; font-weight: 500; color: var(--navy); line-height: 1.2; }
+    .metric-label { font-size: 11px; color: var(--text-3); margin-top: 2px; }
+
+    /* ── WhatsApp mockup ── */
+    .wpp-phone {
+      background: #0d1117;
+      border-radius: 16px;
+      overflow: hidden;
+      font-family: var(--font-sans);
+    }
+    .wpp-header {
+      background: #1a2332;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .wpp-avatar {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: #ec7000; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 500; flex-shrink: 0;
+    }
+    .wpp-name { font-size: 13px; font-weight: 500; color: #fff; }
+    .wpp-verified { color: #25d366; font-size: 11px; }
+    .wpp-status { font-size: 11px; color: #8696a0; }
+    .wpp-body { padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+    .wpp-bubble {
+      background: #1f2c34;
+      border-radius: 0 10px 10px 10px;
+      padding: 10px 12px;
+      font-size: 12px;
+      color: #e9edef;
+      line-height: 1.55;
+      position: relative;
+    }
+    .wpp-bubble p { margin-bottom: 6px; }
+    .wpp-bubble p:last-of-type { margin-bottom: 4px; }
+    .wpp-time { font-size: 10px; color: #8696a0; display: block; text-align: right; margin-top: 4px; }
+    .wpp-action {
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 0.5px solid #2a3942;
+      font-size: 12px;
+      color: #25d366;
+      text-align: center;
+    }
+
     .pill[data-filter] { cursor: pointer; transition: opacity 0.15s; }
     .pill[data-filter]:hover { opacity: 0.75; }
     .pill.active { outline: 2px solid var(--navy); outline-offset: 1px; }
@@ -300,6 +381,71 @@
             <li>Consolidação de materiais extensos</li>
             <li>Preparação de contexto para reuniões e apresentações</li>
           </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Cases reais -->
+    <div class="section">
+      <p class="section-label">Projeto em destaque</p>
+      <div class="case-card">
+
+        <div class="case-left">
+          <div class="case-meta">
+            <span class="case-company">Itaú Unibanco</span>
+            <span class="case-dot">·</span>
+            <span class="case-role">Product Manager</span>
+          </div>
+          <h2 class="case-title">FastPass de Vendas e Ativação</h2>
+          <p class="case-desc">Transformação do WhatsApp em canal estratégico de vendas e ativação de cartões de crédito — jornada digital tempestiva, contextualizada e orientada por dados para acelerar aquisição e engajamento.</p>
+
+          <p class="case-ia-label"><i class="ti ti-sparkles" aria-hidden="true"></i> IA aplicada</p>
+          <ul class="case-ia-list">
+            <li>Construção e iteração das mensagens do canal</li>
+            <li>Análise de público e segmentação da base para envio</li>
+            <li>Análise de resultados e geração de insights para testes A/B</li>
+            <li>Elaboração do PRD do produto</li>
+          </ul>
+
+          <div class="case-metrics">
+            <div class="case-metric">
+              <span class="metric-value">47 mil</span>
+              <span class="metric-label">cartões vendidos</span>
+            </div>
+            <div class="case-metric">
+              <span class="metric-value">1,2 mi</span>
+              <span class="metric-label">cartões ativados</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-right">
+          <div class="wpp-phone">
+            <div class="wpp-header">
+              <div class="wpp-avatar">i</div>
+              <div>
+                <div class="wpp-name">Itaú <span class="wpp-verified">✓</span></div>
+                <div class="wpp-status">canal oficial</div>
+              </div>
+            </div>
+            <div class="wpp-body">
+              <div class="wpp-bubble">
+                <p><strong>Peça seu cartão e ganhe 10% de desconto na sua próxima viagem com a Azul.</strong></p>
+                <p>Viaje com mais benefícios com o <strong>Cartão Azul Itaú Visa Platinum</strong>, com limite inicial de R$ 5000.</p>
+                <span class="wpp-time">11:12</span>
+                <div class="wpp-action">Quero meu cartão →</div>
+              </div>
+              <div class="wpp-bubble">
+                <p>Seu cartão <strong>Itaú Uniclass Black</strong> chegou.</p>
+                <p>A entrega foi concluída. <strong>Vai uma dica:</strong> faça compras usando a <strong>carteira digital</strong> para mais praticidade.</p>
+                <div class="wpp-action">Ativar cartão →</div>
+                <span class="wpp-time">12:12</span>
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>
