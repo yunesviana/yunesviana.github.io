@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfólio IA — Yunesviana</title>
+
+  <!-- Fonte e ícones carregados da internet (Google Fonts + Tabler Icons) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" rel="stylesheet">
+
+  <style>
+    /* ── Reset básico ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Variáveis de cor e tipografia ── */
+    :root {
+      --navy:      #1B3A6B;
+      --navy-2:    #E8EDF5;
+      --navy-3:    #C5D2E8;
+      --bg:        #ffffff;
+      --bg-2:      #f4f5f7;
+      --text:      #1a1a18;
+      --text-2:    #6b6b67;
+      --text-3:    #a09f9b;
+      --border:    rgba(0,0,0,0.10);
+      --border-2:  rgba(0,0,0,0.20);
+      --radius-md: 8px;
+      --radius-lg: 12px;
+    }
+
+    /* ── Layout geral ── */
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--bg-2);
+      padding: 2rem 1rem 4rem;
+    }
+
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      background: var(--bg);
+      border-radius: var(--radius-lg);
+      border: 0.5px solid var(--border);
+      border-top: 3px solid var(--navy);
+      padding: 2.5rem 2.5rem 3rem;
+    }
+
+    /* ── Cabeçalho ── */
+    .tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: 99px;
+      background: var(--navy-2);
+      color: var(--navy);
+      margin-bottom: 1rem;
+    }
+
+    h1 { font-size: 28px; font-weight: 500; color: var(--navy); margin-bottom: 0.4rem; }
+
+    .subtitle {
+      font-size: 15px;
+      color: var(--text-2);
+      max-width: 560px;
+      margin-bottom: 2rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 0.5px solid var(--border);
+      margin: 0 0 2rem;
+    }
+
+    /* ── Seção ── */
+    .section { margin-bottom: 2rem; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+    }
+
+    /* ── Grid de cards ── */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .card {
+      background: var(--bg);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1rem 1.25rem;
+    }
+
+    /* Card em destaque: borda azul mais grossa */
+    .card.highlight { border: 2px solid var(--navy); }
+
+    .card-icon {
+      font-size: 20px;
+      color: var(--text-2);
+      margin-bottom: 10px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    /* ── Lista dentro do card ── */
+    ul.card-list { list-style: none; }
+
+    ul.card-list li {
+      font-size: 13px;
+      color: var(--text-2);
+      padding: 3px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      line-height: 1.5;
+    }
+
+    ul.card-list li::before {
+      content: "—";
+      color: var(--border-2);
+      flex-shrink: 0;
+    }
+
+    /* ── Badge e nota do card de destaque ── */
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 2px 10px;
+      border-radius: 99px;
+      background: var(--navy-2);
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .platform-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+
+    .platform {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 99px;
+      background: var(--bg-2);
+      color: var(--text-2);
+      border: 0.5px solid var(--border);
+    }
+
+    .card-note {
+      font-size: 12px;
+      color: var(--text-3);
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 0.5px solid var(--border);
+      line-height: 1.5;
+    }
+
+    /* ── Pills de entregáveis ── */
+    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .pill {
+      font-size: 12px;
+      padding: 5px 12px;
+      border-radius: 99px;
+      border: 0.5px solid var(--border);
+      color: var(--text-2);
+      background: var(--bg);
+    }
+
+    .pill.purple { background: #EEEDFE; color: #3C3489; border-color: #AFA9EC; }
+    .pill.teal   { background: #E1F5EE; color: #085041; border-color: #9FE1CB; }
+    .pill.blue   { background: #E6F1FB; color: #0C447C; border-color: #85B7EB; }
+    .pill.coral  { background: #FAECE7; color: #712B13; border-color: #F0997B; }
+    .pill.amber  { background: #FAEEDA; color: #633806; border-color: #EF9F27; }
+
+    .pill[data-filter] { cursor: pointer; transition: opacity 0.15s; }
+    .pill[data-filter]:hover { opacity: 0.75; }
+    .pill.active { outline: 2px solid var(--navy); outline-offset: 1px; }
+
+    .card { transition: opacity 0.2s; display: flex; flex-direction: column; }
+    .card.dimmed { opacity: 0.2; }
+    .card-list { flex: 1; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Cabeçalho -->
+    <span class="tag">
+      <i class="ti ti-sparkles" aria-hidden="true"></i> portfólio de competências
+    </span>
+    <h1>Yunes Viana</h1>
+    <p class="subtitle">
+      Uso estratégico de inteligência artificial para escrita, produto, dados, análise
+      e orquestração de agentes — com foco em entrega executiva e produtividade contínua.
+    </p>
+    <hr>
+
+    <!-- Cards de áreas -->
+    <div class="section">
+      <p class="section-label">Áreas de atuação</p>
+      <div class="cards">
+
+        <div class="card highlight" style="grid-column: span 2;" data-category="agentes">
+          <span class="badge">destaque</span>
+          <div class="card-icon"><i class="ti ti-robot" aria-hidden="true"></i></div>
+          <p class="card-title">Agentes de conversação</p>
+          <ul class="card-list">
+            <li>Criação de agentes com instruções e base de conhecimento (sites, docs, livros)</li>
+            <li>Especialistas por domínio: análise, growth, design</li>
+            <li>Prompt engineering — estruturação de instruções para respostas precisas e consistentes</li>
+            <li>Configuração de skills — definição de comportamento, tom e escopo de cada agente</li>
+          </ul>
+        </div>
+
+        <div class="card" data-category="escrita">
+          <div class="card-icon"><i class="ti ti-file-text" aria-hidden="true"></i></div>
+          <p class="card-title">Escrita e documentação</p>
+          <ul class="card-list">
+            <li>PR/FAQ estilo Amazon, memos, narrativas</li>
+            <li>Textos corporativos em PT e EN</li>
+            <li>Síntese executiva de ideias complexas</li>
+            <li>Adaptação de tom e voz para diferentes públicos e canais</li>
+          </ul>
+        </div>
+
+        <div class="card" data-category="analise">
+          <div class="card-icon"><i class="ti ti-chart-line" aria-hidden="true"></i></div>
+          <p class="card-title">Análise e estratégia</p>
+          <ul class="card-list">
+            <li>Benchmarking competitivo de mercado</li>
+            <li>Análise crítica de produto e identificação de gaps</li>
+            <li>Construção de hipóteses e árvores de problema</li>
+            <li>Frameworks de estratégia digital</li>
+            <li>Síntese de insights para tomada de decisão executiva</li>
+            <li>Leitura de conteúdo segmentada por cluster de público + sugestão de testes A/B</li>
+          </ul>
+        </div>
+
+        <div class="card" data-category="produto">
+          <div class="card-icon"><i class="ti ti-device-mobile" aria-hidden="true"></i></div>
+          <p class="card-title">Produto digital</p>
+          <ul class="card-list">
+            <li>Escopo de MVP e jornadas de usuário</li>
+            <li>Arquitetura de informação e fluxos de app mobile</li>
+            <li>Escrita de user stories e critérios de aceite</li>
+            <li>Briefings de produto para times de desenvolvimento</li>
+            <li>Suporte a discovery e roadmap</li>
+            <li>Protótipos pré-Figma para validação rápida de conceito</li>
+          </ul>
+        </div>
+
+        <div class="card" data-category="dados">
+          <div class="card-icon"><i class="ti ti-database" aria-hidden="true"></i></div>
+          <p class="card-title">Dados e analytics</p>
+          <ul class="card-list">
+            <li>Queries para extração de dados como insumo analítico</li>
+            <li>Lógicas de segmentação de base</li>
+            <li>Interpretação de métricas de produto: retenção, funil, engajamento</li>
+            <li>Estruturação de experimentos e hipóteses para testes</li>
+          </ul>
+        </div>
+
+        <div class="card" data-category="visualizacao">
+          <div class="card-icon"><i class="ti ti-layout-dashboard" aria-hidden="true"></i></div>
+          <p class="card-title">Visualização e entregáveis</p>
+          <ul class="card-list">
+            <li>Dashboards interativos em HTML</li>
+            <li>One-pagers e materiais de alinhamento executivo</li>
+            <li>Apresentações prontas para sharing ou validação interna</li>
+          </ul>
+        </div>
+
+        <div class="card" data-category="pesquisa">
+          <div class="card-icon"><i class="ti ti-search" aria-hidden="true"></i></div>
+          <p class="card-title">Pesquisa e síntese</p>
+          <ul class="card-list">
+            <li>Pesquisa de mercado com curadoria de fontes</li>
+            <li>Síntese de entrevistas com usuários ou stakeholders</li>
+            <li>Análise de feedback qualitativo por tema</li>
+            <li>Consolidação de materiais extensos</li>
+            <li>Preparação de contexto para reuniões e apresentações</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Pills de entregáveis -->
+    <div class="section">
+      <p class="section-label">Tipos de entregáveis gerados com IA</p>
+      <div class="pill-row">
+        <span class="pill active" data-filter="todos">Todos</span>
+        <span class="pill purple" data-filter="escrita">PR/FAQ</span>
+        <span class="pill purple" data-filter="escrita">Memos executivos</span>
+        <span class="pill teal" data-filter="analise">Análise competitiva</span>
+        <span class="pill teal" data-filter="analise">Frameworks estratégicos</span>
+        <span class="pill blue" data-filter="visualizacao">Dashboards HTML</span>
+        <span class="pill blue" data-filter="produto">Protótipos pré-Figma</span>
+        <span class="pill coral" data-filter="dados">Queries de dados</span>
+        <span class="pill coral" data-filter="dados">Segmentações</span>
+        <span class="pill amber" data-filter="agentes">Agentes especializados</span>
+        <span class="pill amber" data-filter="produto">Roadmaps de produto</span>
+      </div>
+    </div>
+
+  </div>
+
+<script>
+  const pills = document.querySelectorAll('[data-filter]');
+  const cards = document.querySelectorAll('[data-category]');
+
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      const filter = pill.dataset.filter;
+
+      pills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+
+      cards.forEach(card => {
+        if (filter === 'todos' || card.dataset.category === filter) {
+          card.classList.remove('dimmed');
+        } else {
+          card.classList.add('dimmed');
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>
