@@ -3,18 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfólio IA — Yunesviana</title>
-
-  <!-- Fonte e ícones carregados da internet (Google Fonts + Tabler Icons) -->
+  <title>AI Portfolio — Yunes Viana</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" rel="stylesheet">
-
   <style>
-    /* ── Reset básico ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    /* ── Variáveis de cor e tipografia ── */
     :root {
       --navy:      #1B3A6B;
       --navy-2:    #E8EDF5;
@@ -29,8 +23,6 @@
       --radius-md: 8px;
       --radius-lg: 12px;
     }
-
-    /* ── Layout geral ── */
     body {
       font-family: 'Inter', sans-serif;
       font-size: 16px;
@@ -39,7 +31,6 @@
       background: var(--bg-2);
       padding: 2rem 1rem 4rem;
     }
-
     .container {
       max-width: 780px;
       margin: 0 auto;
@@ -48,9 +39,38 @@
       border: 0.5px solid var(--border);
       border-top: 3px solid var(--navy);
       padding: 2.5rem 2.5rem 3rem;
+      position: relative;
     }
 
-    /* ── Cabeçalho ── */
+    /* ── Lang toggle ── */
+    .lang-toggle {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.5rem;
+      display: flex;
+      border: 1px solid var(--border-2);
+      border-radius: 99px;
+      overflow: hidden;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .lang-toggle button {
+      padding: 4px 12px;
+      border: none;
+      background: transparent;
+      color: var(--text-3);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 500;
+      transition: background 0.15s, color 0.15s;
+    }
+    .lang-toggle button.active {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    /* ── Header ── */
     .tag {
       display: inline-block;
       font-size: 12px;
@@ -61,154 +81,57 @@
       color: var(--navy);
       margin-bottom: 1rem;
     }
-
     h1 { font-size: 28px; font-weight: 500; color: var(--navy); margin-bottom: 0.4rem; }
-
-    .subtitle {
-      font-size: 15px;
-      color: var(--text-2);
-      margin-bottom: 2rem;
-    }
-
+    .subtitle { font-size: 15px; color: var(--text-2); margin-bottom: 2rem; }
     .pf-hero { text-align: center; }
+    hr { border: none; border-top: 0.5px solid var(--border); margin: 0 0 2rem; }
 
-    hr {
-      border: none;
-      border-top: 0.5px solid var(--border);
-      margin: 0 0 2rem;
-    }
-
-    /* ── Seção ── */
+    /* ── Section ── */
     .section { margin-bottom: 2rem; }
-
     .section-label {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--navy);
-      margin-bottom: 0.75rem;
+      font-size: 11px; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--navy); margin-bottom: 0.75rem;
     }
 
-    /* ── Grid de cards ── */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
+    /* ── Cards ── */
+    .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .card {
       background: var(--bg);
       border: 0.5px solid var(--border);
       border-radius: var(--radius-lg);
       padding: 1rem 1.25rem;
-    }
-
-    /* Card em destaque: borda azul mais grossa */
-    .card.highlight { border: 2px solid var(--navy); }
-
-    .card-icon {
-      font-size: 20px;
-      color: var(--text-2);
-      margin-bottom: 10px;
-    }
-
-    .card-title {
-      font-size: 14px;
-      font-weight: 500;
-      margin-bottom: 6px;
-    }
-
-    /* ── Lista dentro do card ── */
-    ul.card-list { list-style: none; }
-
-    ul.card-list li {
-      font-size: 13px;
-      color: var(--text-2);
-      padding: 3px 0;
+      transition: opacity 0.2s;
       display: flex;
-      align-items: flex-start;
-      gap: 6px;
-      line-height: 1.5;
+      flex-direction: column;
     }
-
-    ul.card-list li::before {
-      content: "—";
-      color: var(--border-2);
-      flex-shrink: 0;
+    .card.highlight { border: 2px solid var(--navy); }
+    .card-icon { font-size: 20px; color: var(--text-2); margin-bottom: 10px; }
+    .card-title { font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+    ul.card-list { list-style: none; flex: 1; }
+    ul.card-list li {
+      font-size: 13px; color: var(--text-2); padding: 3px 0;
+      display: flex; align-items: flex-start; gap: 6px; line-height: 1.5;
     }
-
-    /* ── Badge e nota do card de destaque ── */
+    ul.card-list li::before { content: "—"; color: var(--border-2); flex-shrink: 0; }
     .badge {
-      display: inline-block;
-      align-self: flex-start;
-      font-size: 11px;
-      font-weight: 500;
-      padding: 2px 10px;
-      border-radius: 99px;
-      background: var(--navy-2);
-      color: var(--navy);
-      margin-bottom: 8px;
+      display: inline-block; align-self: flex-start;
+      font-size: 11px; font-weight: 500; padding: 2px 10px;
+      border-radius: 99px; background: var(--navy-2); color: var(--navy); margin-bottom: 8px;
     }
-
-    .platform-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
-
-    .platform {
-      font-size: 11px;
-      padding: 3px 8px;
-      border-radius: 99px;
-      background: var(--bg-2);
-      color: var(--text-2);
-      border: 0.5px solid var(--border);
-    }
-
-    .card-note {
-      font-size: 12px;
-      color: var(--text-3);
-      margin-top: 10px;
-      padding-top: 10px;
-      border-top: 0.5px solid var(--border);
-      line-height: 1.5;
-    }
-
-    /* ── Pills de entregáveis ── */
-    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; }
-
-    .pill {
-      font-size: 12px;
-      padding: 5px 12px;
-      border-radius: 99px;
-      border: 0.5px solid var(--border);
-      color: var(--text-2);
-      background: var(--bg);
-    }
-
-    .pill.purple { background: #EEEDFE; color: #3C3489; border-color: #AFA9EC; }
-    .pill.teal   { background: #E1F5EE; color: #085041; border-color: #9FE1CB; }
-    .pill.blue   { background: #E6F1FB; color: #0C447C; border-color: #85B7EB; }
-    .pill.coral  { background: #FAECE7; color: #712B13; border-color: #F0997B; }
-    .pill.amber  { background: #FAEEDA; color: #633806; border-color: #EF9F27; }
+    .card.dimmed { opacity: 0.2; }
 
     /* ── Case card ── */
     .case-card {
-      display: grid;
-      grid-template-columns: 1fr 280px;
-      gap: 2rem;
-      background: var(--bg);
-      border: 0.5px solid var(--border);
-      border-left: 3px solid var(--navy);
-      border-radius: var(--radius-lg);
-      padding: 1.5rem;
+      display: grid; grid-template-columns: 1fr 280px; gap: 2rem;
+      background: var(--bg); border: 0.5px solid var(--border);
+      border-left: 3px solid var(--navy); border-radius: var(--radius-lg); padding: 1.5rem;
     }
-
     .case-meta { font-size: 12px; color: var(--text-3); margin-bottom: 6px; }
     .case-company { font-weight: 500; color: var(--navy); }
     .case-dot { margin: 0 6px; }
     .case-role { color: var(--text-3); }
-
     .case-title { font-size: 18px; font-weight: 500; color: var(--text); margin-bottom: 8px; }
     .case-desc { font-size: 13px; color: var(--text-2); line-height: 1.6; margin-bottom: 1.25rem; }
-
     .case-ia-label {
       font-size: 11px; font-weight: 500; letter-spacing: 0.06em;
       text-transform: uppercase; color: var(--navy); margin-bottom: 8px;
@@ -219,29 +142,16 @@
       display: flex; gap: 8px; align-items: flex-start; line-height: 1.5;
     }
     .case-ia-list li::before { content: "—"; color: var(--navy-3); flex-shrink: 0; }
-
     .case-metrics { display: flex; gap: 1.5rem; }
     .case-metric { display: flex; flex-direction: column; }
     .metric-value { font-size: 22px; font-weight: 500; color: var(--navy); line-height: 1.2; }
     .metric-label { font-size: 11px; color: var(--text-3); margin-top: 2px; }
 
     /* ── WhatsApp mockup ── */
-    .wpp-phone {
-      background: #0d1117;
-      border-radius: 16px;
-      overflow: hidden;
-      font-family: var(--font-sans);
-    }
-    .wpp-header {
-      background: #1a2332;
-      padding: 12px 14px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+    .wpp-phone { background: #0d1117; border-radius: 16px; overflow: hidden; }
+    .wpp-header { background: #1a2332; padding: 12px 14px; display: flex; align-items: center; gap: 10px; }
     .wpp-avatar {
-      width: 34px; height: 34px; border-radius: 50%;
-      background: #ec7000; color: #fff;
+      width: 34px; height: 34px; border-radius: 50%; background: #ec7000; color: #fff;
       display: flex; align-items: center; justify-content: center;
       font-size: 14px; font-weight: 500; flex-shrink: 0;
     }
@@ -250,396 +160,595 @@
     .wpp-status { font-size: 11px; color: #8696a0; }
     .wpp-body { padding: 12px; display: flex; flex-direction: column; gap: 10px; }
     .wpp-bubble {
-      background: #1f2c34;
-      border-radius: 0 10px 10px 10px;
-      padding: 10px 12px;
-      font-size: 12px;
-      color: #e9edef;
-      line-height: 1.55;
-      position: relative;
+      background: #1f2c34; border-radius: 0 10px 10px 10px;
+      padding: 10px 12px; font-size: 12px; color: #e9edef; line-height: 1.55; position: relative;
     }
     .wpp-bubble p { margin-bottom: 6px; }
     .wpp-bubble p:last-of-type { margin-bottom: 4px; }
     .wpp-time { font-size: 10px; color: #8696a0; display: block; text-align: right; margin-top: 4px; }
     .wpp-action {
-      margin-top: 10px;
-      padding-top: 8px;
-      border-top: 0.5px solid #2a3942;
-      font-size: 12px;
-      color: #25d366;
-      text-align: center;
+      margin-top: 10px; padding-top: 8px; border-top: 0.5px solid #2a3942;
+      font-size: 12px; color: #25d366; text-align: center;
     }
 
     /* ── App mockup ── */
-    .app-phone {
-      background: #f2f2f7;
-      border-radius: 16px;
-      overflow: hidden;
-      font-family: var(--font-sans);
-    }
+    .app-phone { background: #f2f2f7; border-radius: 16px; overflow: hidden; }
     .app-header {
-      background: #fff;
-      padding: 12px 14px 8px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      border-bottom: 0.5px solid #e0e0e0;
+      background: #fff; padding: 12px 14px 8px;
+      display: flex; align-items: center; gap: 8px; border-bottom: 0.5px solid #e0e0e0;
     }
     .app-back { font-size: 20px; color: #333; line-height: 1; }
     .app-title { font-size: 14px; font-weight: 500; color: #1a1a1a; }
-    .app-tabs {
-      background: #fff;
-      display: flex;
-      gap: 0;
-      padding: 0 14px;
-      border-bottom: 0.5px solid #e0e0e0;
-    }
-    .app-tab {
-      font-size: 12px;
-      color: #888;
-      padding: 8px 0;
-      margin-right: 16px;
-    }
+    .app-tabs { background: #fff; display: flex; gap: 0; padding: 0 14px; border-bottom: 0.5px solid #e0e0e0; }
+    .app-tab { font-size: 12px; color: #888; padding: 8px 0; margin-right: 16px; }
     .app-tab:first-child { color: #e85d00; border-bottom: 2px solid #e85d00; }
-    .app-filters {
-      display: flex;
-      gap: 8px;
-      padding: 10px 12px;
-      background: #f2f2f7;
-    }
-    .app-filter {
-      font-size: 11px;
-      padding: 5px 10px;
-      border-radius: 99px;
-      border: 1px solid #ccc;
-      color: #555;
-      background: #fff;
-    }
-    .app-filter.active {
-      background: #1B3A6B;
-      color: #fff;
-      border-color: #1B3A6B;
-    }
-    .app-card {
-      background: #fff;
-      margin: 0 10px 10px;
-      border-radius: 12px;
-      padding: 14px;
-    }
+    .app-filters { display: flex; gap: 8px; padding: 10px 12px; background: #f2f2f7; }
+    .app-filter { font-size: 11px; padding: 5px 10px; border-radius: 99px; border: 1px solid #ccc; color: #555; background: #fff; }
+    .app-filter.active { background: #1B3A6B; color: #fff; border-color: #1B3A6B; }
+    .app-card { background: #fff; margin: 0 10px 10px; border-radius: 12px; padding: 14px; }
     .app-card-label { font-size: 11px; font-weight: 500; color: #555; margin-bottom: 8px; }
     .app-card-icon { font-size: 24px; margin-bottom: 8px; }
     .app-card-title { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 6px; line-height: 1.4; }
     .app-card-desc { font-size: 11px; color: #888; margin-bottom: 10px; line-height: 1.5; }
     .app-card-features { border-top: 0.5px solid #eee; }
-    .app-feature {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 0;
-      font-size: 11px;
-      color: #555;
-      border-bottom: 0.5px solid #eee;
-    }
+    .app-feature { display: flex; align-items: center; gap: 10px; padding: 8px 0; font-size: 11px; color: #555; border-bottom: 0.5px solid #eee; }
     .app-feature-icon { font-size: 13px; color: #888; width: 18px; text-align: center; flex-shrink: 0; }
-    .app-cta {
-      background: #e85d00;
-      color: #fff;
-      text-align: center;
-      font-size: 13px;
-      font-weight: 500;
-      border-radius: 8px;
-      padding: 10px;
-      margin-top: 12px;
+    .app-cta { background: #e85d00; color: #fff; text-align: center; font-size: 13px; font-weight: 500; border-radius: 8px; padding: 10px; margin-top: 12px; }
+
+    /* ── Pills ── */
+    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pill {
+      font-size: 12px; padding: 5px 12px; border-radius: 99px;
+      border: 0.5px solid var(--border); color: var(--text-2); background: var(--bg);
+      cursor: pointer; transition: opacity 0.15s;
     }
-
-    .pill[data-filter] { cursor: pointer; transition: opacity 0.15s; }
-    .pill[data-filter]:hover { opacity: 0.75; }
+    .pill:hover { opacity: 0.75; }
     .pill.active { outline: 2px solid var(--navy); outline-offset: 1px; }
+    .pill.purple { background: #EEEDFE; color: #3C3489; border-color: #AFA9EC; }
+    .pill.teal   { background: #E1F5EE; color: #085041; border-color: #9FE1CB; }
+    .pill.blue   { background: #E6F1FB; color: #0C447C; border-color: #85B7EB; }
+    .pill.coral  { background: #FAECE7; color: #712B13; border-color: #F0997B; }
+    .pill.amber  { background: #FAEEDA; color: #633806; border-color: #EF9F27; }
 
-    .card { transition: opacity 0.2s; display: flex; flex-direction: column; }
-    .card.dimmed { opacity: 0.2; }
-    .card-list { flex: 1; }
+    /* ── Contact CTA ── */
+    .contact-section {
+      margin-top: 2rem;
+      background: var(--navy);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      text-align: center;
+      color: #fff;
+    }
+    .contact-section h3 { font-size: 18px; font-weight: 500; margin-bottom: 0.5rem; color: #fff; }
+    .contact-section p { font-size: 13px; color: #BFDBFE; margin-bottom: 1.5rem; line-height: 1.6; }
+    .contact-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border-radius: 8px;
+      background: #fff; color: var(--navy);
+      font-size: 13px; font-weight: 500;
+      text-decoration: none; transition: opacity 0.15s;
+    }
+    .btn-primary:hover { opacity: 0.9; }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.4); color: #fff;
+      font-size: 13px; font-weight: 500;
+      text-decoration: none; transition: opacity 0.15s;
+    }
+    .btn-outline:hover { opacity: 0.8; }
   </style>
 </head>
 <body>
+<div class="container">
 
-  <div class="container">
-
-    <!-- Cabeçalho -->
-    <div class="pf-hero">
-    <span class="tag">
-      <i class="ti ti-sparkles" aria-hidden="true"></i> portfólio de competências
-    </span>
-    <h1>Yunes Viana</h1>
-    <p class="subtitle">
-      Uso estratégico de inteligência artificial para escrita, produto, dados, análise
-      e orquestração de agentes — com foco em entrega executiva e produtividade contínua.
-    </p>
-    </div>
-    <hr>
-
-    <!-- Cards de áreas -->
-    <div class="section">
-      <p class="section-label">Áreas de atuação</p>
-      <div class="cards">
-
-        <div class="card highlight" style="grid-column: span 2;" data-category="agentes">
-          <span class="badge">destaque</span>
-          <div class="card-icon"><i class="ti ti-robot" aria-hidden="true"></i></div>
-          <p class="card-title">Agentes de conversação</p>
-          <ul class="card-list">
-            <li>Criação de agentes com instruções e base de conhecimento (sites, docs, livros)</li>
-            <li>Especialistas por domínio: análise, growth, design</li>
-            <li>Prompt engineering — estruturação de instruções para respostas precisas e consistentes</li>
-            <li>Configuração de skills — definição de comportamento, tom e escopo de cada agente</li>
-          </ul>
-        </div>
-
-        <div class="card" data-category="escrita">
-          <div class="card-icon"><i class="ti ti-file-text" aria-hidden="true"></i></div>
-          <p class="card-title">Escrita e documentação</p>
-          <ul class="card-list">
-            <li>PR/FAQ estilo Amazon, memos, narrativas</li>
-            <li>Textos corporativos em PT e EN</li>
-            <li>Síntese executiva de ideias complexas</li>
-            <li>Adaptação de tom e voz para diferentes públicos e canais</li>
-          </ul>
-        </div>
-
-        <div class="card" data-category="analise">
-          <div class="card-icon"><i class="ti ti-chart-line" aria-hidden="true"></i></div>
-          <p class="card-title">Análise e estratégia</p>
-          <ul class="card-list">
-            <li>Benchmarking competitivo de mercado</li>
-            <li>Análise crítica de produto e identificação de gaps</li>
-            <li>Construção de hipóteses e árvores de problema</li>
-            <li>Frameworks de estratégia digital</li>
-            <li>Síntese de insights para tomada de decisão executiva</li>
-            <li>Leitura de conteúdo segmentada por cluster de público + sugestão de testes A/B</li>
-          </ul>
-        </div>
-
-        <div class="card" data-category="produto">
-          <div class="card-icon"><i class="ti ti-device-mobile" aria-hidden="true"></i></div>
-          <p class="card-title">Produto digital</p>
-          <ul class="card-list">
-            <li>Escopo de MVP e jornadas de usuário</li>
-            <li>Arquitetura de informação e fluxos de app mobile</li>
-            <li>Escrita de user stories e critérios de aceite</li>
-            <li>Briefings de produto para times de desenvolvimento</li>
-            <li>Suporte a discovery e roadmap</li>
-            <li>Protótipos pré-Figma para validação rápida de conceito</li>
-          </ul>
-        </div>
-
-        <div class="card" data-category="dados">
-          <div class="card-icon"><i class="ti ti-database" aria-hidden="true"></i></div>
-          <p class="card-title">Dados e analytics</p>
-          <ul class="card-list">
-            <li>Queries para extração de dados como insumo analítico</li>
-            <li>Lógicas de segmentação de base</li>
-            <li>Interpretação de métricas de produto: retenção, funil, engajamento</li>
-            <li>Estruturação de experimentos e hipóteses para testes</li>
-          </ul>
-        </div>
-
-        <div class="card" data-category="visualizacao">
-          <div class="card-icon"><i class="ti ti-layout-dashboard" aria-hidden="true"></i></div>
-          <p class="card-title">Visualização e entregáveis</p>
-          <ul class="card-list">
-            <li>Dashboards interativos em HTML</li>
-            <li>One-pagers e materiais de alinhamento executivo</li>
-            <li>Apresentações prontas para sharing ou validação interna</li>
-          </ul>
-        </div>
-
-        <div class="card" data-category="pesquisa">
-          <div class="card-icon"><i class="ti ti-search" aria-hidden="true"></i></div>
-          <p class="card-title">Pesquisa e síntese</p>
-          <ul class="card-list">
-            <li>Pesquisa de mercado com curadoria de fontes</li>
-            <li>Síntese de entrevistas com usuários ou stakeholders</li>
-            <li>Análise de feedback qualitativo por tema</li>
-            <li>Consolidação de materiais extensos</li>
-            <li>Preparação de contexto para reuniões e apresentações</li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-
-    <hr>
-
-    <!-- Cases reais -->
-    <div class="section">
-      <p class="section-label">Projeto em destaque</p>
-      <div class="case-card">
-
-        <div class="case-left">
-          <div class="case-meta">
-            <span class="case-company">Itaú Unibanco</span>
-            <span class="case-dot">·</span>
-            <span class="case-role">Product Manager</span>
-          </div>
-          <h2 class="case-title">FastPass de Vendas e Ativação</h2>
-          <p class="case-desc">Gestão do portfólio de jornadas de cartões e estratégia de mensageria no WhatsApp, com foco em aquisição, ativação e uso. Responsável pela análise contínua de funil, conversão, retenção, faturamento e CAC para priorização de roadmap — com interface direta com stakeholders e lideranças de negócio para viabilizar novas jornadas e integrações no canal.</p>
-
-          <p class="case-ia-label"><i class="ti ti-sparkles" aria-hidden="true"></i> IA aplicada</p>
-          <ul class="case-ia-list">
-            <li>Construção e iteração das mensagens do canal</li>
-            <li>Análise de público e segmentação da base para envio</li>
-            <li>Análise de resultados e geração de insights para testes A/B</li>
-            <li>Elaboração do PRD do produto</li>
-          </ul>
-
-          <div class="case-metrics">
-            <div class="case-metric">
-              <span class="metric-value">47 mil</span>
-              <span class="metric-label">cartões vendidos</span>
-            </div>
-            <div class="case-metric">
-              <span class="metric-value">1,2 mi</span>
-              <span class="metric-label">cartões ativados</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="case-right">
-          <div class="wpp-phone">
-            <div class="wpp-header">
-              <div class="wpp-avatar">i</div>
-              <div>
-                <div class="wpp-name">Itaú <span class="wpp-verified">✓</span></div>
-                <div class="wpp-status">canal oficial</div>
-              </div>
-            </div>
-            <div class="wpp-body">
-              <div class="wpp-bubble">
-                <p><strong>Peça seu cartão e ganhe 10% de desconto na sua próxima viagem com a Azul.</strong></p>
-                <p>Viaje com mais benefícios com o <strong>Cartão Azul Itaú Visa Platinum</strong>, com limite inicial de R$ 5000.</p>
-                <span class="wpp-time">11:12</span>
-                <div class="wpp-action">Quero meu cartão →</div>
-              </div>
-              <div class="wpp-bubble">
-                <p>Seu cartão <strong>Itaú Uniclass Black</strong> chegou.</p>
-                <p>A entrega foi concluída. <strong>Vai uma dica:</strong> faça compras usando a <strong>carteira digital</strong> para mais praticidade.</p>
-                <div class="wpp-action">Ativar cartão →</div>
-                <span class="wpp-time">12:12</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="case-card" style="margin-top: 12px;">
-
-        <div class="case-left">
-          <div class="case-meta">
-            <span class="case-company">Itaú Unibanco</span>
-            <span class="case-dot">·</span>
-            <span class="case-role">Product Manager</span>
-          </div>
-          <h2 class="case-title">Hub de Crédito Imobiliário</h2>
-          <p class="case-desc">Liderança de iniciativas de melhoria contínua da jornada de Simulação de Crédito Imobiliário para clientes de Média e Alta Renda. Participação na construção do novo Hub de Imóveis, aumentando o awareness do produto no app Itaú.</p>
-
-          <p class="case-ia-label"><i class="ti ti-sparkles" aria-hidden="true"></i> IA aplicada</p>
-          <ul class="case-ia-list">
-            <li>Estruturação do discovery junto ao time de Crédito</li>
-            <li>Construção do PRD do produto</li>
-            <li>Análise de dados do funil e identificação de gargalos</li>
-            <li>Construção de queries para extração de dados</li>
-            <li>Mapeamento da jornada com volumetrias para embasar propostas de melhoria</li>
-          </ul>
-
-          <div class="case-metrics">
-            <div class="case-metric">
-              <span class="metric-value">+15%</span>
-              <span class="metric-label">potencial de incremento em propostas</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="case-right">
-          <div class="app-phone">
-            <div class="app-header">
-              <span class="app-back">‹</span>
-              <span class="app-title">Crédito</span>
-            </div>
-            <div class="app-tabs">
-              <span class="app-tab">Ofertas</span>
-              <span class="app-tab">Produtos contratados</span>
-            </div>
-            <div class="app-filters">
-              <span class="app-filter">Empréstimos</span>
-              <span class="app-filter">Veículos</span>
-              <span class="app-filter active">Imóveis</span>
-            </div>
-            <div class="app-card">
-              <div class="app-card-label">Crédito Imobiliário</div>
-              <div class="app-card-icon">🏠</div>
-              <div class="app-card-title">Conquiste seu imóvel com praticidade e segurança</div>
-              <div class="app-card-desc">Aprovação online e contratação pelo app com apoio de um consultor imobiliário</div>
-              <div class="app-card-features">
-                <div class="app-feature">
-                  <span class="app-feature-icon">=$</span>
-                  <span>Flexibilize a entrada com o FGTS</span>
-                </div>
-                <div class="app-feature">
-                  <span class="app-feature-icon">%</span>
-                  <span>Taxas competitivas e benefícios</span>
-                </div>
-              </div>
-              <div class="app-cta">Continuar</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    <hr>
-
-    <!-- Pills de entregáveis -->
-    <div class="section">
-      <p class="section-label">Tipos de entregáveis gerados com IA</p>
-      <div class="pill-row">
-        <span class="pill active" data-filter="todos">Todos</span>
-        <span class="pill purple" data-filter="escrita">PR/FAQ</span>
-        <span class="pill purple" data-filter="escrita">Memos executivos</span>
-        <span class="pill teal" data-filter="analise">Análise competitiva</span>
-        <span class="pill teal" data-filter="analise">Frameworks estratégicos</span>
-        <span class="pill blue" data-filter="visualizacao">Dashboards HTML</span>
-        <span class="pill blue" data-filter="produto">Protótipos pré-Figma</span>
-        <span class="pill coral" data-filter="dados">Queries de dados</span>
-        <span class="pill coral" data-filter="dados">Segmentações</span>
-        <span class="pill amber" data-filter="agentes">Agentes especializados</span>
-        <span class="pill amber" data-filter="produto">Roadmaps de produto</span>
-      </div>
-    </div>
-
+  <!-- Language toggle -->
+  <div class="lang-toggle">
+    <button id="btn-pt" class="active" onclick="setLang('pt')">PT</button>
+    <button id="btn-en" onclick="setLang('en')">EN</button>
   </div>
 
+  <!-- Header -->
+  <div class="pf-hero">
+    <span class="tag">
+      <i class="ti ti-sparkles"></i>
+      <span data-i18n="tag"></span>
+    </span>
+    <h1>Yunes Viana</h1>
+    <p class="subtitle" data-i18n="subtitle"></p>
+  </div>
+  <hr>
+
+  <!-- Areas -->
+  <div class="section">
+    <p class="section-label" data-i18n="section-areas"></p>
+    <div class="cards">
+
+      <div class="card highlight" style="grid-column: span 2;" data-category="agentes">
+        <span class="badge" data-i18n="badge-highlight"></span>
+        <div class="card-icon"><i class="ti ti-robot"></i></div>
+        <p class="card-title" data-i18n="card-agents-title"></p>
+        <ul class="card-list" data-i18n-list="card-agents-list"></ul>
+      </div>
+
+      <div class="card" data-category="escrita">
+        <div class="card-icon"><i class="ti ti-file-text"></i></div>
+        <p class="card-title" data-i18n="card-writing-title"></p>
+        <ul class="card-list" data-i18n-list="card-writing-list"></ul>
+      </div>
+
+      <div class="card" data-category="analise">
+        <div class="card-icon"><i class="ti ti-chart-line"></i></div>
+        <p class="card-title" data-i18n="card-analysis-title"></p>
+        <ul class="card-list" data-i18n-list="card-analysis-list"></ul>
+      </div>
+
+      <div class="card" data-category="produto">
+        <div class="card-icon"><i class="ti ti-device-mobile"></i></div>
+        <p class="card-title" data-i18n="card-product-title"></p>
+        <ul class="card-list" data-i18n-list="card-product-list"></ul>
+      </div>
+
+      <div class="card" data-category="dados">
+        <div class="card-icon"><i class="ti ti-database"></i></div>
+        <p class="card-title" data-i18n="card-data-title"></p>
+        <ul class="card-list" data-i18n-list="card-data-list"></ul>
+      </div>
+
+      <div class="card" data-category="visualizacao">
+        <div class="card-icon"><i class="ti ti-layout-dashboard"></i></div>
+        <p class="card-title" data-i18n="card-viz-title"></p>
+        <ul class="card-list" data-i18n-list="card-viz-list"></ul>
+      </div>
+
+      <div class="card" data-category="pesquisa">
+        <div class="card-icon"><i class="ti ti-search"></i></div>
+        <p class="card-title" data-i18n="card-research-title"></p>
+        <ul class="card-list" data-i18n-list="card-research-list"></ul>
+      </div>
+
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Cases -->
+  <div class="section">
+    <p class="section-label" data-i18n="section-featured"></p>
+
+    <!-- Case 1 -->
+    <div class="case-card">
+      <div class="case-left">
+        <div class="case-meta">
+          <span class="case-company">Itaú Unibanco</span>
+          <span class="case-dot">·</span>
+          <span class="case-role" data-i18n="case-role"></span>
+        </div>
+        <h2 class="case-title" data-i18n="case1-title"></h2>
+        <p class="case-desc" data-i18n="case1-desc"></p>
+        <p class="case-ia-label"><i class="ti ti-sparkles"></i> <span data-i18n="ia-label"></span></p>
+        <ul class="case-ia-list" data-i18n-list="case1-ia-list"></ul>
+        <div class="case-metrics">
+          <div class="case-metric">
+            <span class="metric-value">47<span data-i18n="case1-m1-unit"></span></span>
+            <span class="metric-label" data-i18n="case1-m1-label"></span>
+          </div>
+          <div class="case-metric">
+            <span class="metric-value">1.2<span data-i18n="case1-m2-unit"></span></span>
+            <span class="metric-label" data-i18n="case1-m2-label"></span>
+          </div>
+        </div>
+      </div>
+      <div class="case-right">
+        <div class="wpp-phone">
+          <div class="wpp-header">
+            <div class="wpp-avatar">i</div>
+            <div>
+              <div class="wpp-name">Itaú <span class="wpp-verified">✓</span></div>
+              <div class="wpp-status" data-i18n="wpp-status"></div>
+            </div>
+          </div>
+          <div class="wpp-body">
+            <div class="wpp-bubble">
+              <p><strong data-i18n="wpp-msg1-title"></strong></p>
+              <p data-i18n="wpp-msg1-body"></p>
+              <span class="wpp-time">11:12</span>
+              <div class="wpp-action" data-i18n="wpp-cta1"></div>
+            </div>
+            <div class="wpp-bubble">
+              <p data-i18n="wpp-msg2-title"></p>
+              <p data-i18n="wpp-msg2-body"></p>
+              <div class="wpp-action" data-i18n="wpp-cta2"></div>
+              <span class="wpp-time">12:12</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Case 2 -->
+    <div class="case-card" style="margin-top: 12px;">
+      <div class="case-left">
+        <div class="case-meta">
+          <span class="case-company">Itaú Unibanco</span>
+          <span class="case-dot">·</span>
+          <span class="case-role" data-i18n="case-role"></span>
+        </div>
+        <h2 class="case-title" data-i18n="case2-title"></h2>
+        <p class="case-desc" data-i18n="case2-desc"></p>
+        <p class="case-ia-label"><i class="ti ti-sparkles"></i> <span data-i18n="ia-label"></span></p>
+        <ul class="case-ia-list" data-i18n-list="case2-ia-list"></ul>
+        <div class="case-metrics">
+          <div class="case-metric">
+            <span class="metric-value">+15%</span>
+            <span class="metric-label" data-i18n="case2-m1-label"></span>
+          </div>
+        </div>
+      </div>
+      <div class="case-right">
+        <div class="app-phone">
+          <div class="app-header">
+            <span class="app-back">‹</span>
+            <span class="app-title" data-i18n="app-section-title"></span>
+          </div>
+          <div class="app-tabs">
+            <span class="app-tab" data-i18n="app-tab1"></span>
+            <span class="app-tab" data-i18n="app-tab2"></span>
+          </div>
+          <div class="app-filters">
+            <span class="app-filter" data-i18n="app-filter1"></span>
+            <span class="app-filter" data-i18n="app-filter2"></span>
+            <span class="app-filter active" data-i18n="app-filter3"></span>
+          </div>
+          <div class="app-card">
+            <div class="app-card-label" data-i18n="app-card-label"></div>
+            <div class="app-card-icon">🏠</div>
+            <div class="app-card-title" data-i18n="app-card-title"></div>
+            <div class="app-card-desc" data-i18n="app-card-desc"></div>
+            <div class="app-card-features">
+              <div class="app-feature">
+                <span class="app-feature-icon">=$</span>
+                <span data-i18n="app-feature1"></span>
+              </div>
+              <div class="app-feature">
+                <span class="app-feature-icon">%</span>
+                <span data-i18n="app-feature2"></span>
+              </div>
+            </div>
+            <div class="app-cta" data-i18n="app-cta"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Deliverables pills -->
+  <div class="section">
+    <p class="section-label" data-i18n="section-deliverables"></p>
+    <div class="pill-row" id="pill-row"></div>
+  </div>
+
+  <!-- Contact CTA -->
+  <div class="contact-section">
+    <h3 data-i18n="contact-title"></h3>
+    <p data-i18n="contact-desc"></p>
+    <div class="contact-buttons">
+      <a href="mailto:yunesviana@gmail.com" class="btn-primary">
+        <i class="ti ti-mail"></i>
+        <span data-i18n="contact-btn-email"></span>
+      </a>
+      <a href="https://www.upwork.com/freelancers/yunesviana" target="_blank" class="btn-outline">
+        <i class="ti ti-briefcase"></i>
+        <span data-i18n="contact-btn-upwork"></span>
+      </a>
+      <a href="https://www.linkedin.com/in/yunes-viana-556506120/" target="_blank" class="btn-outline">
+        <i class="ti ti-brand-linkedin"></i>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+
+</div>
+
 <script>
-  const pills = document.querySelectorAll('[data-filter]');
-  const cards = document.querySelectorAll('[data-category]');
+const translations = {
+  pt: {
+    "tag": "portfólio de competências",
+    "subtitle": "Uso estratégico de inteligência artificial para escrita, produto, dados, análise e orquestração de agentes — com foco em entrega executiva e produtividade contínua.",
+    "section-areas": "Áreas de atuação",
+    "badge-highlight": "destaque",
+    "card-agents-title": "Agentes de conversação",
+    "card-agents-list": [
+      "Criação de agentes com instruções e base de conhecimento (sites, docs, livros)",
+      "Especialistas por domínio: análise, growth, design",
+      "Prompt engineering — estruturação de instruções para respostas precisas e consistentes",
+      "Configuração de skills — definição de comportamento, tom e escopo de cada agente"
+    ],
+    "card-writing-title": "Escrita e documentação",
+    "card-writing-list": [
+      "PR/FAQ estilo Amazon, memos, narrativas",
+      "Textos corporativos em PT e EN",
+      "Síntese executiva de ideias complexas",
+      "Adaptação de tom e voz para diferentes públicos e canais"
+    ],
+    "card-analysis-title": "Análise e estratégia",
+    "card-analysis-list": [
+      "Benchmarking competitivo de mercado",
+      "Análise crítica de produto e identificação de gaps",
+      "Construção de hipóteses e árvores de problema",
+      "Frameworks de estratégia digital",
+      "Síntese de insights para tomada de decisão executiva",
+      "Leitura de conteúdo segmentada por cluster de público + sugestão de testes A/B"
+    ],
+    "card-product-title": "Produto digital",
+    "card-product-list": [
+      "Escopo de MVP e jornadas de usuário",
+      "Arquitetura de informação e fluxos de app mobile",
+      "Escrita de user stories e critérios de aceite",
+      "Briefings de produto para times de desenvolvimento",
+      "Suporte a discovery e roadmap",
+      "Protótipos pré-Figma para validação rápida de conceito"
+    ],
+    "card-data-title": "Dados e analytics",
+    "card-data-list": [
+      "Queries para extração de dados como insumo analítico",
+      "Lógicas de segmentação de base",
+      "Interpretação de métricas de produto: retenção, funil, engajamento",
+      "Estruturação de experimentos e hipóteses para testes"
+    ],
+    "card-viz-title": "Visualização e entregáveis",
+    "card-viz-list": [
+      "Dashboards interativos em HTML",
+      "One-pagers e materiais de alinhamento executivo",
+      "Apresentações prontas para sharing ou validação interna"
+    ],
+    "card-research-title": "Pesquisa e síntese",
+    "card-research-list": [
+      "Pesquisa de mercado com curadoria de fontes",
+      "Síntese de entrevistas com usuários ou stakeholders",
+      "Análise de feedback qualitativo por tema",
+      "Consolidação de materiais extensos",
+      "Preparação de contexto para reuniões e apresentações"
+    ],
+    "section-featured": "Projeto em destaque",
+    "case-role": "Product Manager",
+    "ia-label": "IA aplicada",
+    "case1-title": "FastPass de Vendas e Ativação",
+    "case1-desc": "Gestão do portfólio de jornadas de cartões e estratégia de mensageria no WhatsApp, com foco em aquisição, ativação e uso. Responsável pela análise contínua de funil, conversão, retenção, faturamento e CAC para priorização de roadmap — com interface direta com stakeholders e lideranças de negócio para viabilizar novas jornadas e integrações no canal.",
+    "case1-ia-list": [
+      "Construção e iteração das mensagens do canal",
+      "Análise de público e segmentação da base para envio",
+      "Análise de resultados e geração de insights para testes A/B",
+      "Elaboração do PRD do produto"
+    ],
+    "case1-m1-unit": " mil",
+    "case1-m1-label": "cartões vendidos",
+    "case1-m2-unit": " mi",
+    "case1-m2-label": "cartões ativados",
+    "wpp-status": "canal oficial",
+    "wpp-msg1-title": "Peça seu cartão e ganhe 10% de desconto na sua próxima viagem com a Azul.",
+    "wpp-msg1-body": "Viaje com mais benefícios com o Cartão Azul Itaú Visa Platinum, com limite inicial de R$ 5000.",
+    "wpp-cta1": "Quero meu cartão →",
+    "wpp-msg2-title": "Seu cartão Itaú Uniclass Black chegou.",
+    "wpp-msg2-body": "A entrega foi concluída. Vai uma dica: faça compras usando a carteira digital para mais praticidade.",
+    "wpp-cta2": "Ativar cartão →",
+    "case2-title": "Hub de Crédito Imobiliário",
+    "case2-desc": "Liderança de iniciativas de melhoria contínua da jornada de Simulação de Crédito Imobiliário para clientes de Média e Alta Renda. Participação na construção do novo Hub de Imóveis, aumentando o awareness do produto no app Itaú.",
+    "case2-ia-list": [
+      "Estruturação do discovery junto ao time de Crédito",
+      "Construção do PRD do produto",
+      "Análise de dados do funil e identificação de gargalos",
+      "Construção de queries para extração de dados",
+      "Mapeamento da jornada com volumetrias para embasar propostas de melhoria"
+    ],
+    "case2-m1-label": "potencial de incremento em propostas",
+    "app-section-title": "Crédito",
+    "app-tab1": "Ofertas",
+    "app-tab2": "Produtos contratados",
+    "app-filter1": "Empréstimos",
+    "app-filter2": "Veículos",
+    "app-filter3": "Imóveis",
+    "app-card-label": "Crédito Imobiliário",
+    "app-card-title": "Conquiste seu imóvel com praticidade e segurança",
+    "app-card-desc": "Aprovação online e contratação pelo app com apoio de um consultor imobiliário",
+    "app-feature1": "Flexibilize a entrada com o FGTS",
+    "app-feature2": "Taxas competitivas e benefícios",
+    "app-cta": "Continuar",
+    "section-deliverables": "Tipos de entregáveis gerados com IA",
+    "pills": [
+      { "label": "Todos", "class": "", "filter": "todos" },
+      { "label": "PR/FAQ", "class": "purple", "filter": "escrita" },
+      { "label": "Memos executivos", "class": "purple", "filter": "escrita" },
+      { "label": "Análise competitiva", "class": "teal", "filter": "analise" },
+      { "label": "Frameworks estratégicos", "class": "teal", "filter": "analise" },
+      { "label": "Dashboards HTML", "class": "blue", "filter": "visualizacao" },
+      { "label": "Protótipos pré-Figma", "class": "blue", "filter": "produto" },
+      { "label": "Queries de dados", "class": "coral", "filter": "dados" },
+      { "label": "Segmentações", "class": "coral", "filter": "dados" },
+      { "label": "Agentes especializados", "class": "amber", "filter": "agentes" },
+      { "label": "Roadmaps de produto", "class": "amber", "filter": "produto" }
+    ],
+    "contact-title": "Vamos trabalhar juntos?",
+    "contact-desc": "Estou disponível para projetos de consultoria, contratos de longo prazo e colaborações remotas.",
+    "contact-btn-email": "Enviar e-mail",
+    "contact-btn-upwork": "Ver perfil no Upwork"
+  },
+  en: {
+    "tag": "skills portfolio",
+    "subtitle": "Strategic use of AI for writing, product management, data, analysis, and agent orchestration — focused on executive delivery and continuous productivity.",
+    "section-areas": "Areas of expertise",
+    "badge-highlight": "featured",
+    "card-agents-title": "Conversational Agents",
+    "card-agents-list": [
+      "Building agents with custom instructions and knowledge bases (websites, docs, books)",
+      "Domain specialists: analysis, growth, design",
+      "Prompt engineering — structuring instructions for precise, consistent responses",
+      "Skill configuration — defining behavior, tone, and scope for each agent"
+    ],
+    "card-writing-title": "Writing & Documentation",
+    "card-writing-list": [
+      "Amazon-style PR/FAQ, memos, narratives",
+      "Corporate writing in PT and EN",
+      "Executive synthesis of complex ideas",
+      "Tone and voice adaptation for different audiences and channels"
+    ],
+    "card-analysis-title": "Analysis & Strategy",
+    "card-analysis-list": [
+      "Competitive market benchmarking",
+      "Critical product analysis and gap identification",
+      "Hypothesis building and problem trees",
+      "Digital strategy frameworks",
+      "Insight synthesis for executive decision-making",
+      "Audience-segmented content analysis + A/B test suggestions"
+    ],
+    "card-product-title": "Digital Product",
+    "card-product-list": [
+      "MVP scoping and user journey mapping",
+      "Information architecture and mobile app flows",
+      "User story and acceptance criteria writing",
+      "Product briefs for development teams",
+      "Discovery and roadmap support",
+      "Pre-Figma prototypes for rapid concept validation"
+    ],
+    "card-data-title": "Data & Analytics",
+    "card-data-list": [
+      "Data extraction queries for analytical input",
+      "Audience segmentation logic",
+      "Product metrics interpretation: retention, funnel, engagement",
+      "Experiment structuring and hypothesis building"
+    ],
+    "card-viz-title": "Visualization & Deliverables",
+    "card-viz-list": [
+      "Interactive HTML dashboards",
+      "One-pagers and executive alignment materials",
+      "Presentations ready for sharing or internal review"
+    ],
+    "card-research-title": "Research & Synthesis",
+    "card-research-list": [
+      "Market research with curated sources",
+      "User and stakeholder interview synthesis",
+      "Qualitative feedback analysis by theme",
+      "Consolidation of extensive materials",
+      "Context preparation for meetings and presentations"
+    ],
+    "section-featured": "Featured Projects",
+    "case-role": "Product Manager",
+    "ia-label": "AI Applied",
+    "case1-title": "FastPass Sales & Activation",
+    "case1-desc": "Led the card journey portfolio and WhatsApp messaging strategy, focused on acquisition, activation, and usage. Responsible for continuous funnel, conversion, retention, billing, and CAC analysis to drive roadmap prioritization — directly interfacing with stakeholders and business leadership to enable new journeys and channel integrations.",
+    "case1-ia-list": [
+      "Channel message creation and iteration",
+      "Audience analysis and base segmentation for campaigns",
+      "Results analysis and A/B test insight generation",
+      "PRD writing for the product"
+    ],
+    "case1-m1-unit": "K",
+    "case1-m1-label": "cards sold",
+    "case1-m2-unit": "M",
+    "case1-m2-label": "cards activated",
+    "wpp-status": "official channel",
+    "wpp-msg1-title": "Get your card and earn 10% off your next trip with Azul Airlines.",
+    "wpp-msg1-body": "Travel with more benefits with the Azul Itaú Visa Platinum Card, with an initial limit of BRL 5,000.",
+    "wpp-cta1": "I want my card →",
+    "wpp-msg2-title": "Your Itaú Uniclass Black card has arrived.",
+    "wpp-msg2-body": "Delivery is complete. Pro tip: make purchases using your digital wallet for more convenience.",
+    "wpp-cta2": "Activate card →",
+    "case2-title": "Mortgage Hub",
+    "case2-desc": "Led continuous improvement initiatives for the mortgage simulation journey targeting middle and high-income customers. Co-built the new Property Hub, increasing product awareness within the Itaú app.",
+    "case2-ia-list": [
+      "Discovery structuring with the Credit team",
+      "PRD writing for the product",
+      "Funnel data analysis and bottleneck identification",
+      "Data extraction query building",
+      "Journey mapping with volumetrics to support improvement proposals"
+    ],
+    "case2-m1-label": "potential uplift in proposals",
+    "app-section-title": "Credit",
+    "app-tab1": "Offers",
+    "app-tab2": "Active products",
+    "app-filter1": "Loans",
+    "app-filter2": "Auto",
+    "app-filter3": "Mortgage",
+    "app-card-label": "Home Loan",
+    "app-card-title": "Get your home with ease and confidence",
+    "app-card-desc": "Online approval and contract signing in the app, supported by a mortgage advisor",
+    "app-feature1": "Use your FGTS balance for the down payment",
+    "app-feature2": "Competitive rates and benefits",
+    "app-cta": "Continue",
+    "section-deliverables": "Types of AI-generated deliverables",
+    "pills": [
+      { "label": "All", "class": "", "filter": "todos" },
+      { "label": "PR/FAQ", "class": "purple", "filter": "escrita" },
+      { "label": "Executive memos", "class": "purple", "filter": "escrita" },
+      { "label": "Competitive analysis", "class": "teal", "filter": "analise" },
+      { "label": "Strategy frameworks", "class": "teal", "filter": "analise" },
+      { "label": "HTML dashboards", "class": "blue", "filter": "visualizacao" },
+      { "label": "Pre-Figma prototypes", "class": "blue", "filter": "produto" },
+      { "label": "Data queries", "class": "coral", "filter": "dados" },
+      { "label": "Segmentation models", "class": "coral", "filter": "dados" },
+      { "label": "Specialized agents", "class": "amber", "filter": "agentes" },
+      { "label": "Product roadmaps", "class": "amber", "filter": "produto" }
+    ],
+    "contact-title": "Let's work together",
+    "contact-desc": "Available for consulting projects, long-term contracts, and remote collaborations.",
+    "contact-btn-email": "Send an email",
+    "contact-btn-upwork": "View Upwork profile"
+  }
+};
 
-  pills.forEach(pill => {
-    pill.addEventListener('click', () => {
-      const filter = pill.dataset.filter;
+let currentLang = 'pt';
 
-      pills.forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
+function setLang(lang) {
+  currentLang = lang;
+  document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
 
-      cards.forEach(card => {
-        if (filter === 'todos' || card.dataset.category === filter) {
-          card.classList.remove('dimmed');
-        } else {
-          card.classList.add('dimmed');
-        }
+  const t = translations[lang];
+
+  // Simple text elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.textContent = t[key];
+  });
+
+  // List elements
+  document.querySelectorAll('[data-i18n-list]').forEach(el => {
+    const key = el.getAttribute('data-i18n-list');
+    if (t[key]) {
+      el.innerHTML = t[key].map(item => `<li>${item}</li>`).join('');
+    }
+  });
+
+  // Pills
+  renderPills(lang);
+}
+
+function renderPills(lang) {
+  const t = translations[lang];
+  const row = document.getElementById('pill-row');
+  row.innerHTML = '';
+  t.pills.forEach((p, i) => {
+    const span = document.createElement('span');
+    span.className = 'pill' + (p.class ? ' ' + p.class : '') + (i === 0 ? ' active' : '');
+    span.setAttribute('data-filter', p.filter);
+    span.textContent = p.label;
+    span.addEventListener('click', () => {
+      document.querySelectorAll('[data-filter]').forEach(x => x.classList.remove('active'));
+      span.classList.add('active');
+      document.querySelectorAll('[data-category]').forEach(card => {
+        card.classList.toggle('dimmed', p.filter !== 'todos' && card.getAttribute('data-category') !== p.filter);
       });
     });
+    row.appendChild(span);
   });
+}
+
+// Init
+setLang('pt');
 </script>
 </body>
 </html>
